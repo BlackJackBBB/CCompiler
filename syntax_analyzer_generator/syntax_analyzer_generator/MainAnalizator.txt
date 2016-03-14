@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace syntax_analyzer_generator {
+
+	class Program {
+
+		static void Main(string[] args) {
+
+			LrTablica lrTablica = Serializer.DeSerializeObject<LrTablica>("tablica.bin");
+
+			string[] zavrsniZnakovi = Serializer.DeSerializeObject<string[]>("zavrsni_znakovi.bin");
+
+			string[] sinkronizacijskiZnakovi = Serializer.DeSerializeObject<string[]>("sinkronizacijski_znakovi.bin");
+
+			SintaksniAnalizator analizator = new SintaksniAnalizator(lrTablica, sinkronizacijskiZnakovi, zavrsniZnakovi);
+
+			analizator.Analiziraj();
+
+		}
+	}
+}
